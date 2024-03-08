@@ -5,7 +5,12 @@ let currentTeam = "Manchester FC";
 let trophiesWon = 27;
 
 //Write your function here
-
+function createManagerArray(managerName, managerAge, currentTeam, trophiesWon) {
+  let managerArray = [managerName, managerAge, currentTeam, trophiesWon];
+  return managerArray;
+}
+let managerArray = createManagerArray(managerName,managerAge,currentTeam,trophiesWon) ;
+console.log(managerArray);
 // Don't edit the following code
 try {
   var manager = createManager(
@@ -22,6 +27,16 @@ try {
 var formation = [4, 4, 3];
 
 //write your function here
+function createFormation(formationArray) {
+  let formationObject = {
+      defender: formationArray[0],
+      midfield: formationArray[1],
+      forward: formationArray[2]
+  };
+  return formationObject;
+}
+let formationObj = createFormation(formation);
+console.log(formationObj);
 
 // Dont edit the following code
 
@@ -32,15 +47,27 @@ try {
 }
 
 //Progression 3 - Filter players that debuted in ___ year
-
+function filterPlayersByDebutYear(year) {
+  return players.filter(player => player.debutYear === year);
+}
+let playersDebutedIn2000 = filterPlayersByDebutYear(1997);
+console.log(playersDebutedIn2000);
 //Progression 4 - Filter players that play at the position _______
-
+function filterPlayersbyPosition(def,mid,fwd){
+  return players.filter(player => player.defender == def && player.midfield) == mid && player.forward == fwd)
+}
 //Progression 5 - Filter players that have won ______ award
-
+function filterPlayersByAward() {
+  return players.filter(player => player.award == True);
+}
 //Progression 6 - Filter players that won ______ award ____ times
-
+function filterPlayersByAwardTimes(num) {
+  return players.filter(player => player.award == True && player.num == num );
+}
 //Progression 7 - Filter players that won ______ award and belong to ______ country
-
+function filterPlayersByAwardTimes(num,country) {
+  return players.filter(player => player.award == True && player.country == country );
+}
 //Progression 8 - Filter players that won atleast ______ awards, belong to ______ team and are younger than ____
 
 //Progression 9 - Sort players in descending order of their age
