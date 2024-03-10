@@ -69,12 +69,38 @@ function filterPlayersByAwardTimes(num,country) {
   return players.filter(player => player.award == True && player.country == country );
 }
 //Progression 8 - Filter players that won atleast ______ awards, belong to ______ team and are younger than ____
-
+function filterPlayersByCriteria(minAwards, team, maxAge) {
+  return players.filter(player => 
+      player.awards.length >= minAwards &&
+      player.team === team &&
+      player.age < maxAge
+  );
+}
 //Progression 9 - Sort players in descending order of their age
-
+function sortPlayersByAgeDescending() {
+  return players.sort((a, b) => b.age - a.age);
+}
 //Progression 10 - Sort players beloging to _____ team in descending order of awards won
-
+function sortPlayersByAwardsDescending(team) {
+  return players.filter(player => player.team === team)
+                .sort((a, b) => b.awards.length - a.awards.length);
+}
 //Challenge 1 - Sort players that have won _______ award _____ times and belong to _______ country in alphabetical order of their names
-
+function sortPlayersByAwardAndTimesAndCountry(award, times, country) {
+  return players.filter(player => 
+      player.awards.filter(a => a === award).length === times &&
+      player.country === country
+  ).sort((a, b) => a.name.localeCompare(b.name));
+}
 //Challenge 2 - Sort players that are older than _____ years in alphabetical order
 //Sort the awards won by them in reverse chronological order
+function sortPlayersOlderThanAndAwardsReverseChronological(age) {
+  return players.filter(player => player.age > age)
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map(player => {
+                    player.awards.sort((x, y) => {
+                        return new Date(y.date) - new Date(x.date);
+                    });
+                    return player;
+                });
+}
